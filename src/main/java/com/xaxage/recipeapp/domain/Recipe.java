@@ -1,6 +1,7 @@
 package com.xaxage.recipeapp.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Recipe {
@@ -18,6 +19,10 @@ public class Recipe {
     private String directions;
 
 //    private Difficulty difficulty;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
+    private Set<Ingredient> ingredients;
+
     @Lob//Is kinda another type of field in SQL , which has more space than default SQL String
     private byte[] image;
 
