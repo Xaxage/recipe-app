@@ -4,7 +4,7 @@ import com.xaxage.recipeapp.converters.RecipeCommandToRecipe;
 import com.xaxage.recipeapp.converters.RecipeToRecipeCommand;
 import com.xaxage.recipeapp.domain.Recipe;
 import com.xaxage.recipeapp.repositories.RecipeRepository;
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -30,7 +30,7 @@ public class RecipeServiceImplTest {
     @Mock
     RecipeCommandToRecipe recipeCommandToRecipe;
 
-    @Before
+    @BeforeEach
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
