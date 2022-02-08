@@ -16,6 +16,7 @@ import java.util.Set;
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
+
     private final RecipeRepository recipeRepository;
     private final RecipeCommandToRecipe recipeCommandToRecipe;
     private final RecipeToRecipeCommand recipeToRecipeCommand;
@@ -28,9 +29,10 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public Set<Recipe> getRecipes() {
-        log.debug("I'm in the Service");
+        log.debug("I'm in the service");
+
         Set<Recipe> recipeSet = new HashSet<>();
-        recipeRepository.findAll().forEach(recipeSet::add);
+        recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
     }
 
@@ -58,8 +60,12 @@ public class RecipeServiceImpl implements RecipeService {
         Recipe detachedRecipe = recipeCommandToRecipe.convert(command);
 
         Recipe savedRecipe = recipeRepository.save(detachedRecipe);
-        log.debug("Saved RecipeId: " + detachedRecipe.getId());
-
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
         return recipeToRecipeCommand.convert(savedRecipe);
+    }
+
+    @Override
+    public void deleteById(Long idToDelete) {
+        recipeRepository.deleteById(idToDelete);
     }
 }
