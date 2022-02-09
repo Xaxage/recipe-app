@@ -5,6 +5,7 @@ import com.xaxage.recipeapp.commands.IngredientCommand;
 import com.xaxage.recipeapp.commands.RecipeCommand;
 import com.xaxage.recipeapp.services.IngredientService;
 import com.xaxage.recipeapp.services.RecipeService;
+import com.xaxage.recipeapp.services.UnitOfMeasureService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -25,6 +26,8 @@ public class IngredientControllerTest {
     @Mock
     RecipeService recipeService;
 
+    UnitOfMeasureService unitOfMeasureService;
+
     IngredientController controller;
 
     MockMvc mockMvc;
@@ -33,7 +36,7 @@ public class IngredientControllerTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
 
-        controller = new IngredientController(recipeService, ingredientService);
+        controller = new IngredientController(ingredientService, recipeService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
