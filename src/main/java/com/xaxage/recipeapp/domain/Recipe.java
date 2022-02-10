@@ -29,7 +29,7 @@ public class Recipe {
     private Set<Ingredient> ingredients = new HashSet<>();
 
     @Lob//Is kinda another type of field in SQL , which has more space than default SQL String
-    private byte[] image;
+    private Byte[] image;
 
     //EnumType.ORDINAL converts our enum values into ints, first value will be 1, second 2 etc in our db.
     //EnumType.STRING will per
@@ -57,6 +57,8 @@ public class Recipe {
             notes.setRecipe(this);
         }
     }
+
+
 
 
 }
